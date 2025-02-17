@@ -1,6 +1,7 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Tela(){
+    const [posicao, setPosicao] = useState({x: 150, y:75});
 
 const refCanvas = useRef<HTMLCanvasElement|null>(null);
 
@@ -12,7 +13,7 @@ return <canvas ref={refCanvas} onClick = {() => {
     ctx.fillStyle = "lightblue"
     ctx.fillRect(0,0,canvas.width, canvas.height);
     ctx.fillStyle = "lightgreen";
-    ctx.ellipse(150, 75, 5, 5, 0, 0, 2*Math.PI, false);
+    ctx.ellipse(posicao.x, posicao.y, 5, 5, 0, 0, 2*Math.PI, false);
     ctx.stroke();
     ctx.fill();
 }}
