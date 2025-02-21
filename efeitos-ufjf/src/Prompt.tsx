@@ -1,6 +1,10 @@
 import { useRef, useState } from "react";
 
-export default function Prompt(){
+type Prompt = {
+    onPosicaoChange: (posicao:{x:number, y:number})=>void;
+}
+
+export default function Prompt(onPosicaoChange){
 
     const [entrada, setEntrada] = useState("");
     const [saida, setSaida] = useState("");
@@ -13,6 +17,12 @@ export default function Prompt(){
 
     function onExecutarClick() {
         setSaida(entrada);
+        const tokens = entrada.split(" ");
+        if(tokens[0] == "mover"){
+            const x = Number(tokens[1]);
+            const y = Number(tokens[2]);
+            onPosicaoChange({x, y});
+        }
         if(!refInput.current) return;
         refInput.current.select();
     }
