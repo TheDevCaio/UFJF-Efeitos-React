@@ -13,6 +13,7 @@ export default function Prompt(){
 
     function onExecutarClick() {
         setSaida(entrada);
+        if(!refInput.current) return;
         refInput.current.select();
     }
 
